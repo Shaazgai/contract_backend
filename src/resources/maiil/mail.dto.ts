@@ -12,5 +12,7 @@ export class CreateEmailDto {
     html: string 
     @ApiProperty()
     text?:string
+    @ApiProperty()
+    id: string
     // ph: string
 }

@@ -1,6 +1,6 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import mongoose, { Document } from 'mongoose';
-import { ContractStatus, PartyType } from 'src/utils/enum';
+import { ContractStatus, ContractType, PartyType } from 'src/utils/enum';
 
 export type ContractDocument = Document & Contract;
 
@@ -11,15 +11,26 @@ export class Party {
   type: PartyType;
   @Prop()
   signature?: string;
-}
+  @Prop()
+  registerNumber?: string
+  @Prop()
+  username: string
+  @Prop()
+    phone?: string
+    @Prop()
+    email: string
+    @Prop()
+    verified: boolean
+  }
 
 @Schema({ timestamps: true, toJSON: { getters: true, minimize: false } })
 export class Contract {
   @Prop()
   contractName: string;
 
-  @Prop({ required: true })
-  file: string;
+  @Prop()
+  file: string[];
+
 
   @Prop({ default: false })
   verified: boolean;
@@ -29,6 +40,14 @@ export class Contract {
 
   @Prop({ enum: ContractStatus, default: ContractStatus.pending })
   status: ContractStatus;
+  @Prop({ enum: ContractType,  })
+  type: ContractType;
+
+
+  @Prop()
+  startDate: string
+  @Prop()
+  endDate: string
 }
 
 export const ContractSchema = SchemaFactory.createForClass(Contract);

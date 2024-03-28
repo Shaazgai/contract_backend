@@ -10,15 +10,15 @@ export class EmailService {
         
     }
     async sendEmail(dto: CreateEmailDto) {
-        const {from, recipients, subject, html } = dto
+        const { recipients, subject, id } = dto
 
         try {
-             await this.service.sendMail({
+     await this.service.sendMail({
                 to:  recipients,
                 subject: subject, 
-                html: `<a href='http://localhost:3000/user?user=${recipients[0]}'>Link</a>`, 
+                html: `<a href='http://localhost:3000/contract/create/${id}?user=${recipients[0]}' target="_blank">Link</a>`, 
               })
-            
+ 
      
             return true
         } catch (error) {

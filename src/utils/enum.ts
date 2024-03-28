@@ -24,6 +24,13 @@ export enum ContractStatus {
   banned = 'banned',
   returned = 'returned',
 }
+export enum ContractType {
+  lease = 'lease',
+  performance = 'performance',
+  // Хамтран ажиллах гэрээ
+  partner = 'partner',
+
+}
 export enum PartyType {
   subscriber = 'subscriber',
   executer = 'executer',

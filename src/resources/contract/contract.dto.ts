@@ -1,5 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { ContractStatus, PartyType } from 'src/utils/enum';
+import { ContractStatus, ContractType, PartyType } from 'src/utils/enum';
 
 export class PartyDto {
   @ApiProperty()
@@ -8,21 +8,39 @@ export class PartyDto {
   type: PartyType;
   @ApiProperty()
   signature?: string;
+  @ApiProperty()
+  email: string;
+  @ApiProperty()
+  phone: string
+  @ApiProperty()
+  registerNumber: string
+  @ApiProperty()
+  username: string
+  @ApiProperty()
+  verified: boolean
+
 }
 
 export class ContractDto {
   @ApiProperty()
-  contractName: string;
+  contractName?: string;
 
   @ApiProperty()
-  file: string;
+  file?: string[];
 
   @ApiProperty()
-  verified: boolean;
+  verified?: boolean;
 
   @ApiProperty({ type: Array<PartyDto> })
-  files: PartyDto[];
+  files?: PartyDto[];
 
   @ApiProperty({ enum: ContractStatus })
-  status: ContractStatus;
+  status?: ContractStatus;
+  @ApiProperty({ enum: ContractType })
+  type?: ContractType;
+
+  @ApiProperty()
+  startDate: string
+  @ApiProperty()
+  endDate: string
 }
