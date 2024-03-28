@@ -5,6 +5,9 @@ import { AppController } from './app.controller';
 import appConfig from './config/app.config';
 import { ContractModule } from './resources/contract/contract.module';
 import { UserModule } from './resources/user/user.module';
+import { MailerModule } from '@nestjs-modules/mailer';
+import { MailModule } from './resources/maiil/mail.module';
+import { AuthModule } from './resources/auth/auth.module';
 @Global()
 @Module({
   imports: [
@@ -21,6 +24,22 @@ import { UserModule } from './resources/user/user.module';
     }),
     UserModule,
     ContractModule,
+    MailerModule.forRoot({
+      transport: {
+        // host: "smtp-mail.outlook.com", 
+        service: 'gmail',
+    secureConnection: false, 
+    secure: true,
+    port: 465,
+    auth: {
+      user: 'b21fa1704@ufe.edu.mn',
+        pass: 'epxxxtfryvkuvctv'
+    }
+      }
+
+    }),
+    MailModule,
+    AuthModule
   ],
   controllers: [AppController],
   providers: [],
